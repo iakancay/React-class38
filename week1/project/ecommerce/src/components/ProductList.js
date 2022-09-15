@@ -6,7 +6,7 @@ import ProductFilterButton from "./ProductFilterButton";
 
 export default function ProductList() {
   const [category, setCategory] = useState("jewelery");
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(false);
 
   const selectCategory = (e) => {
     const buttonText = e.target.innerText;
