@@ -6,13 +6,13 @@ import ProductFilterButton from "./ProductFilterButton";
 
 export default function ProductList() {
   const [category, setCategory] = useState("jewelery");
-  const [selected, setSelected] = useState(false);
+  const [selectedId, setSelectedId] = useState("1");
 
   const selectCategory = (e) => {
     const buttonText = e.target.innerText;
     const categoryName = buttonText.slice(6);
     setCategory(categoryName);
-    setSelected(e.target.id);
+    setSelectedId(e.target.id);
   };
 
   return (
@@ -24,7 +24,7 @@ export default function ProductList() {
             id={index}
             text={elm}
             eventHandler={selectCategory}
-            selected={selected}
+            selected={selectedId}
           />
         ))}
       </div>
