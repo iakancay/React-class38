@@ -1,39 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import categories from "../fake-data/all-categories";
 import products from "./../fake-data/all-products";
 import ProductCard from "./ProductCard";
 import ProductFilterButton from "./ProductFilterButton";
 
 export default function ProductList() {
-  const [category, setCategory] = useState("jewelery");
-  const [selectedId, setSelectedId] = useState("1");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
-  const selectCategory = (e) => {
-    const buttonText = e.target.innerText;
-    const categoryName = buttonText.slice(6);
-    setCategory(categoryName);
-    setSelectedId(e.target.id);
-  };
+  useEffect(() => {
+    if (selectedCategory) {
+      setFilteredProducts(
+        products.filter(
+          (product) => product.category === selectedCategory.slice(6)
+        )
+      );
+    }
+  }, [selectedCategory]);
 
   return (
     <>
       <h1>Products</h1>
       <div className="product-filter-bar">
-        {categories.map((elm, index) => (
+        {categories.map((ctg) => (
           <ProductFilterButton
-            id={index}
-            text={elm}
-            eventHandler={selectCategory}
-            selected={selectedId}
+            key={ctg}
+            category={ctg}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
           />
         ))}
       </div>
       <div className="product-list">
-        {products
-          .filter((product) => product.category === category)
-          .map((product) => (
-            <ProductCard value={product} />
-          ))}
+        {filteredProducts.map((product) => (
+          <ProductCard value={product} key={product.id} />
+        ))}
       </div>
     </>
   );

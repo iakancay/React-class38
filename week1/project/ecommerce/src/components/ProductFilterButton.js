@@ -1,19 +1,20 @@
 import React from "react";
 
 export default function ProductFilterButton({
-  id,
-  text,
-  eventHandler,
-  selected,
+  category,
+  selectedCategory,
+  setSelectedCategory,
 }) {
+  const handleOnClick = () => {
+    setSelectedCategory(category);
+  };
   return (
     <div className="product-filter">
       <button
-        id={id}
-        onClick={eventHandler}
-        className={selected === id.toString() ? "button-active" : undefined}
+        onClick={handleOnClick}
+        className={selectedCategory === category ? "button-active" : undefined}
       >
-        {text}
+        {category}
       </button>
     </div>
   );
