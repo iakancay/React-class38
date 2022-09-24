@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import products from "./../fake-data/all-products";
 import ProductCard from "./ProductCard";
 import ProductFilterButton from "./ProductFilterButton";
+import loading from "./../assets/200w.gif";
+import { Link } from "react-router-dom";
 
 export default function ProductList() {
   const [categories, setCategories] = useState([]);
@@ -25,21 +26,15 @@ export default function ProductList() {
   }, []);
 
   useEffect(() => {
+    const productsUrl = selectedCategory
+      ? `https://fakestoreapi.com/products/category/${selectedCategory}`
+      : "https://fakestoreapi.com/products";
     (async () => {
       try {
-        if (selectedCategory) {
-          const response = await fetch(
-            `https://fakestoreapi.com/products/category/${selectedCategory}`
-          );
-          const data = await response.json();
-          setFilteredProducts(data);
-          setIsLoading(false);
-        } else {
-          const response = await fetch("https://fakestoreapi.com/products");
-          const data = await response.json();
-          setFilteredProducts(data);
-          setIsLoading(false);
-        }
+        const response = await fetch(productsUrl);
+        const data = await response.json();
+        setFilteredProducts(data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +42,10 @@ export default function ProductList() {
   }, [selectedCategory]);
 
   return isLoading ? (
-    <h2>Loading...</h2>
+    <>
+      <h2>Loading...</h2>
+      <img src={loading} alt="loading.." />
+    </>
   ) : (
     <>
       <h1>Products</h1>
@@ -63,7 +61,13 @@ export default function ProductList() {
       </div>
       <div className="product-list">
         {filteredProducts.map((product) => (
-          <ProductCard value={product} key={product.id} />
+          <Link
+            className="product-card"
+            to={`/products/${product.id}`}
+            key={product.id}
+          >
+            <ProductCard product={product} key={product.id} />
+          </Link>
         ))}
       </div>
     </>
