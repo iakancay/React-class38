@@ -3,12 +3,14 @@ import ProductCard from "./ProductCard";
 import ProductFilterButton from "./ProductFilterButton";
 import loading from "./../assets/200w.gif";
 import { Link } from "react-router-dom";
+import Error from "./Error";
 
 export default function ProductList() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -20,7 +22,8 @@ export default function ProductList() {
         setCategories(data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setIsLoading(false);
+        setError(error.message);
       }
     })();
   }, []);
@@ -36,7 +39,8 @@ export default function ProductList() {
         setFilteredProducts(data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setIsLoading(false);
+        setError(error.message);
       }
     })();
   }, [selectedCategory]);
@@ -46,6 +50,8 @@ export default function ProductList() {
       <h2>Loading...</h2>
       <img src={loading} alt="loading.." />
     </>
+  ) : error ? (
+    <Error error={error} />
   ) : (
     <>
       <h1>Products</h1>

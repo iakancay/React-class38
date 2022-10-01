@@ -55,6 +55,15 @@ button {
   max-width: 75%;
   height: 300px;
 }
+.error {
+  width: 50%;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  background-color: #f7a7a3;
+  border-left: 5px solid #8f130b;
+}
 
 @media (min-width: 1024px) {
   .product-card {
