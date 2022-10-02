@@ -15,6 +15,9 @@
   grid-template-columns: repeat(6, 1fr);
   width: 80%;
 }
+.favorite-products h2 {
+  grid-column-start: span 3;
+}
 .product-card {
   position: relative;
   text-decoration: none;
