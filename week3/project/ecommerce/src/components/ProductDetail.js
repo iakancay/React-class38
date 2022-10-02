@@ -20,7 +20,11 @@ export default function ProductDetail() {
   ) : (
     <div className="product-detail">
       <FavoriteIcon product={product} />
-      <img src={product?.image} alt={product.id} />
+      <img
+        className="product-detail-image"
+        src={product?.image}
+        alt={product.id}
+      />
       <h3>{product.title}</h3>
       <p>{product.description}</p>
       <p>
