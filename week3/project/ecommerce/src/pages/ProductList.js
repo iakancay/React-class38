@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ProductCard from "./ProductCard";
-import ProductFilterButton from "./ProductFilterButton";
+import ProductCard from "../components/ProductCard";
+import ProductFilterButton from "../components/ProductFilterButton";
 import loading from "./../assets/200w.gif";
-import Error from "./Error";
+import Error from "../components/Error";
 import { useFetch } from "../hooks/useFetch";
 
 export default function ProductList() {

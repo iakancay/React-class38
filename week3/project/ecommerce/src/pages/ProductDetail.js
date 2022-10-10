@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import Error from "./Error";
+import Error from "../components/Error";
 import loading from "./../assets/200w.gif";
 import { useFetch } from "../hooks/useFetch";
-import FavoriteIcon from "./FavoriteIcon";
+import FavoriteIcon from "../components/FavoriteIcon";
 
 export default function ProductDetail() {
   let params = useParams();

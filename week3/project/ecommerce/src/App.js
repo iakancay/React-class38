@@ -1,7 +1,7 @@
 import "./App.css";
-import ProductList from "./components/ProductList";
+import ProductList from "./pages/ProductList";
 import { Routes, Route } from "react-router-dom";
-import ProductDetail from "./components/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 import { FavoritesProvider } from "./contexts/FavoritesProvider";
 import FavoriteProducts from "./components/FavoriteProducts";
 import Nav from "./components/Nav";
